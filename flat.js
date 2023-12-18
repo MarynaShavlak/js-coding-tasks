@@ -43,15 +43,15 @@ function flattenDepth(array, currentDepth) {
 return flattenDepth(arr, 0);
 }
 
-// Example usage:
-const nestedArray = [1, 2, [3, 4, [5, 6]], 7, [8]];
-// const flattenedArrayDepth1 = customFlat(nestedArray, 1);
-const flattenedArrayDepth2 = customFlat(nestedArray, 2);
-// const flattenedArrayRoundedDepth = customFlat(nestedArray, -1);
+// // Example usage:
+// const nestedArray = [1, 2, [3, 4, [5, 6]], 7, [8]];
+// // const flattenedArrayDepth1 = customFlat(nestedArray, 1);
+// const flattenedArrayDepth2 = customFlat(nestedArray, 2);
+// // const flattenedArrayRoundedDepth = customFlat(nestedArray, -1);
 
-// console.log(flattenedArrayDepth1);
-console.log(flattenedArrayDepth2);
-// console.log(flattenedArrayRoundedDepth);
+// // console.log(flattenedArrayDepth1);
+// console.log(flattenedArrayDepth2);
+// // console.log(flattenedArrayRoundedDepth);
 
 
 // Explanation
@@ -64,3 +64,5 @@ console.log(flattenedArrayDepth2);
 
 // In summary, incrementing the depth ensures that the recursive call goes deeper into nested arrays, providing a mechanism to control how many levels of nesting should be flattened. 
 // Without incrementing the depth, the recursion would not explore deeper levels, and the final result would retain nested arrays up to the original depth.
+
+
