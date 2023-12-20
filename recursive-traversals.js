@@ -149,8 +149,8 @@ function fib(n) {
   return n <= 1 ? n : fib(n - 1) + fib(n - 2);
 }
 
-console.log(fib(3));
-console.log(fib(7));
+// console.log(fib(3));
+// console.log(fib(7));
 // console.log( fib(77) ); // 5527939700884757
 
 // …Але для великих значень n це дуже повільно. 
@@ -369,14 +369,177 @@ function sumUsingEval(arr) {
   return eval(arr.join('+'));
 }
 
+
+function sumUsingIndexedForLoop(arr) {
+  let sum = 0;
+  for (let i in arr) {
+    sum += arr[i];
+  }
+  return sum;
+}
+
+function sumUsingForOfLoop(arr) {
+  let sum = 0;
+  for (const value of arr) {
+    sum += value;
+  }
+  return sum;
+}
+
+function* generateValues(arr) {
+  yield* arr;
+}
+
+function sumWithGeneratorFunction(arr) {
+  let sum = 0;
+  for (const value of generateValues(arr)) {
+    sum += value;
+  }
+  return sum;
+}
+
+
 let arraySum ;
 
 
-let array = [1, 2, 3, 5]
-// arraySum = sumUsingForLoop(array);
-// arraySum = sumUsingForEach(array);
-// arraySum = sumUsingReduce(array);
-// arraySum = sumUsingWhileLoop(array);
-// arraySum = sumUsingRecursion(array);
-arraySum = sumUsingEval(array);
-console.log('arraySum : ', arraySum );
+// let array = [1, 2, 3, 5]
+// // arraySum = sumUsingForLoop(array);
+// // arraySum = sumUsingForEach(array);
+// // arraySum = sumUsingReduce(array);
+// // arraySum = sumUsingWhileLoop(array);
+// // arraySum = sumUsingRecursion(array);
+// // arraySum = sumUsingEval(array);
+// // arraySum = sumUsingIndexedForLoop(array);
+// // arraySum = sumUsingForOfLoop(array);
+// // arraySum = sumWithGeneratorFunction(array);
+// // console.log('arraySum : ', arraySum );
+
+
+// function powerUsingReduce(base, exponent) {
+//   return Array(exponent).fill(base).reduce((accumulator, currentValue) => accumulator * currentValue, 1);
+// }
+//  console.log('power', powerUsingReduce(2, 3));
+
+//  function nestedObjectSum(obj) {
+//   let sum = 0;
+
+//   for (let key in obj) {
+//     if (typeof obj[key] === 'object') {
+//       sum += nestedObjectSum(obj[key]);
+//     } else if (typeof obj[key] === 'number') {
+//       sum += obj[key];
+//     }
+
+//   }
+
+//   return sum;
+// }
+
+// const exampleObject = {
+//   a: 1,
+//   b: {
+//     c: 2,
+//     d: {
+//       e: 3,
+//       f: 4
+//     }
+//   },
+//   g: 5
+// };
+
+// Calling the function with the exampleObject
+// const result = nestedObjectSum(exampleObject);
+
+// The result will be the sum of all the numeric values in the nested structure: 1 + 2 + 3 + 4 + 5 = 15
+// console.log(result); // Output: 15
+
+
+// function isPalindrome(str) {
+//   str = str.toLowerCase();
+//   if (str.length <= 1) return true;
+//   if (str[0] !== str[str.length - 1]) return false;
+//   return isPalindrome(str.slice(1, -1));
+// }
+
+
+// let word = 'Alisa';
+// let word2 = 'alisaasila';
+// let word3 = 'alla';
+// console.log('is palindrome',isPalindrome(word));
+// console.log('is palindrome',isPalindrome(word2));
+// console.log('is palindrome',isPalindrome(word3));
+
+
+
+// function isPalindrome(str) {
+//   const len = str.length;
+//   for (let i = 0; i < len / 2; i++) {
+//     if (str[i] !== str[len - 1 - i]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// function isPalindrome(str) {
+//   return str.split('').every((char, index) => char === str[str.length - 1 - index]);
+// }
+
+
+// function isPalindrome(str) {
+//   return str.split('').reduce((acc, char, index) => acc && char === str[str.length - 1 - index], true);
+// }
+
+// function isPalindrome(str) {
+//   str=str.toLowerCase();
+//   const uniqueChars = new Set(str);
+//   console.log('uniqueChars: ', uniqueChars);
+//   const reversed = Array.from(uniqueChars).reverse().join('');
+//   console.log('reversed: ', reversed);
+
+//   // Check if the original and reversed strings are the same
+//   return reversed === str;
+// }
+
+function findCombinations(array, target) {
+  function findCombinationsHelper(startIndex, target, currentCombination) {
+    if (target === 0) {
+      result.push([...currentCombination]);
+      return;
+    }
+
+    for (let i = startIndex; i < array.length; i++) {
+      if (i > startIndex && array[i] === array[i - 1]) {
+        continue; // Skip duplicates to avoid duplicate combinations
+      }
+
+      const currentNum = array[i];
+      if (currentNum > target) {
+        continue; // Skip if the current number is greater than the target
+      }
+
+      console.log('sTART currentCombination: ', currentCombination);
+      currentCombination.push(currentNum);
+      findCombinationsHelper(i + 1, target - currentNum, currentCombination);
+      console.log('currentCombination: ', currentCombination);
+      console.log('_______-');
+      currentCombination.pop();
+    }
+  }
+
+  array.sort((a, b) => a - b); // Sort the array to handle duplicates efficiently
+  const result = [];
+  findCombinationsHelper(0, target, []);
+  return result;
+}
+
+// Example usage:
+const array = [2, 3, 6, 7];
+const target = 7;
+const array2 = [1, 3, 4, 6];
+const target2 = 8;
+// const combinations = findCombinations(array, target);
+// console.log('combinations: ', combinations);
+// const combinations2 = findCombinations(array2, target2);
+// console.log('combinations2 : ', combinations2 );
+
