@@ -567,34 +567,159 @@ function formatCreditCardNumber2(cardNumber) {
   return formattedNumber;
 }
 function formatCreditCardNumber3(cardNumber) {
-  const formattedNumber = cardNumber.substring(0, 4) + ' **** **** ' + cardNumber.substring(12);
+  const formattedNumber =
+    cardNumber.substring(0, 4) + ' **** **** ' + cardNumber.substring(12);
   return formattedNumber;
 }
 function formatCreditCardNumber4(cardNumber) {
- return cardNumber.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 **** **** $4');
+  return cardNumber.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 **** **** $4');
 }
 
 function formatCreditCardNumber5(cardNumber) {
-  return cardNumber.split('').map((digit, index) => (index >= 4 && index < 12) ? '*' : digit).join('');
+  return cardNumber
+    .split('')
+    .map((digit, index) => (index >= 4 && index < 12 ? '*' : digit))
+    .join('');
 }
 function formatCreditCardNumber6(cardNumber) {
   const cardArray = cardNumber.split('');
-  cardArray.splice(4, 8, ' **** ',  ' **** ');
+  cardArray.splice(4, 8, ' **** ', ' **** ');
   const result = cardArray.join('');
   return result;
 }
 function formatCreditCardNumber7(cardNumber) {
   let formattedNumber = '';
-  let charsInString  = cardNumber.length;
+  let charsInString = cardNumber.length;
   const charInGroup = 4;
-  
-for (let i = 0; i < 16; i++) {
-  if (i > 0 && i % charInGroup === 0) {
-    formattedNumber += ' ';
+
+  for (let i = 0; i < 16; i++) {
+    if (i > 0 && i % charInGroup === 0) {
+      formattedNumber += ' ';
+    }
+    formattedNumber +=
+      i >= charInGroup && i < charsInString - charInGroup ? '*' : cardNumber[i];
   }
-    formattedNumber += ((i >= charInGroup  && i < charsInString - charInGroup )) ? '*' : cardNumber[i];
-}
-return formattedNumber;
+  return formattedNumber;
 }
 
-console.log(formatCreditCardNumber7('1234567890987654'));
+// console.log(formatCreditCardNumber7('1234567890987654'));
+
+function combineArray(arr1, arr2) {
+  let result = [];
+  for (let i = 0; i < arr1.length; i += 1) {
+    result.push(arr1[i] + arr2[i]);
+  }
+  return result;
+}
+function combineArray1(arr1, arr2) {
+  return arr1.map((element, index) => element + arr2[index]);
+}
+
+function combineArray2(arr1, arr2) {
+  return arr1.reduce((result, element, index) => {
+    result.push(element + arr2[index]);
+    return result;
+  }, []);
+}
+
+function combineArray3(arr1, arr2) {
+  const result = [];
+  arr1.forEach((element, index) => {
+    result.push(element + arr2[index]);
+  });
+  return result;
+}
+
+function addArrays(array1, array2) {
+  const result = [];
+  [array1, array2].forEach((arr, i) => {
+    arr.forEach((element, index) => {
+      result[index] = (result[index] || 0) + element;
+    });
+  });
+  return result;
+}
+
+// console.log(combineArray([1,2,3], [7,8,9]));
+// console.log(combineArray1([1,2,3], [7,8,9]));
+// console.log(combineArray2([1,2,3], [7,8,9]));
+// console.log(combineArray3([1,2,3], [7,8,9]));
+// console.log(addArrays([1,2,3], [7,8,9]));
+
+function splitString(str) {
+  let result = [];
+  if (str.length % 2 !== 0) {
+    str = str + '*';
+  }
+  const array = str.split('');
+  for (let index = 0; index < array.length; index+=2) {
+    const el = array[index]+ array[index+1];
+    result.push(el);
+    
+  }
+
+  return result;
+}
+
+
+function splitString1(str) {
+  return str.split('').reduce((acc, char, index) => {
+    if (index % 2 === 0) acc.push(char + (str[index + 1] || '*'));
+    return acc;
+  }, []);
+}
+
+function splitString2(str) {
+  return str.split('').map((char, index, arr) => {
+    return index % 2 === 0 ? char + (arr[index + 1] || '*') : null;
+  })
+  .filter(Boolean);
+}
+
+function splitString3(str) {
+  const result =  Array.from({ length: Math.ceil(str.length / 2) }, (_, index) => {
+    console.log('index: ', index);
+    return str.slice(index * 2, index * 2 + 2).padEnd(2, '*')
+  }
+    
+  );
+  return result;
+}
+function splitString4(str) {
+  let result = [];
+  str.split('').every((char, index, arr) => {
+    index % 2 === 0 && result.push(char + (arr[index + 1] || '*'));
+    return true;
+  });
+  return result;
+}
+function splitString5(str) {
+  let result = [];
+  let index = 0;
+  while (index < str.length) {
+    let pair = str.slice(index, index + 2);
+    if (pair.length < 2) {
+      pair = pair + '*';
+    }
+    result.push(pair);
+    index += 2;
+  }
+  return result;
+}
+
+function splitString6(str) {
+  if (str.length === 0) return [];
+  return [str.slice(0, 2) || str[0] + '*'].concat(splitString(str.slice(2)));
+}
+
+
+
+
+
+console.log(splitString6('123456')); // ['12', '34', '56']
+console.log(splitString6('ab cd ef')); // ['ab', ' c', 'd ', 'ef']
+console.log(splitString6('ABC')); // ['AB', 'C*']
+console.log(splitString6(' ')); // [' *']
+console.log(splitString6('')); // []
+let g = 'a'.slice(0,2);
+console.log(g);
