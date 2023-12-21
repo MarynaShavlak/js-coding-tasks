@@ -72,25 +72,45 @@ function customFlat(arr, depth = 1) {
 // In summary, incrementing the depth ensures that the recursive call goes deeper into nested arrays, providing a mechanism to control how many levels of nesting should be flattened.
 // Without incrementing the depth, the recursion would not explore deeper levels, and the final result would retain nested arrays up to the original depth.
 
-const ar = [23, 1000, 1, -1, 8, 3];
-console.log(ar);
-bubbleSort(ar);
-console.log(ar);
 
-function bubbleSort(ar) {
-  let shouldSort = false;
 
-  for (let i = 0; i < ar.length - 1; i++) {
-    let currentEl = ar[i];
-    let nextEl = ar[i + 1];
-    if (currentEl > nextEl) {
-      ar[i] = ar[i + 1];
-      ar[i + 1] = currentEl;
-      shouldSort = true;
-    }
-  }
+// function bubbleSort(ar) {
+//   let shouldSort = false;
 
-  if (shouldSort) {
-    bubbleSort(ar);
-  }
-}
+//   for (let i = 0; i < ar.length - 1; i++) {
+//     let temCurrentEl = ar[i];
+//     let nextEl = ar[i + 1];
+//     if (temCurrentEl > nextEl) {
+//       ar[i] = ar[i + 1];
+//       ar[i + 1] = temCurrentEl;
+//       shouldSort = true;
+//     }
+//   }
+
+//   if (shouldSort) {
+//     bubbleSort(ar);
+//   }
+// }
+// const ar = [23, 1000, 1, -1, 8, 3];
+// console.log(ar);
+// bubbleSortWithLoop(ar);
+// console.log(ar);
+
+// function bubbleSortWithLoop(ar) {
+//   let shouldSort = true;
+
+//   while (shouldSort) {
+//     shouldSort = false;
+
+//     for (let i = 0; i < ar.length - 1; i++) {
+//       let a = ar[i];
+//       if (a > ar[i + 1]) {
+//         ar[i] = ar[i + 1];
+//         ar[i + 1] = a;
+//         shouldSort = true;
+//       }
+//     }
+//   }
+// }
+
+
