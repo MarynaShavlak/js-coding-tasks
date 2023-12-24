@@ -652,15 +652,13 @@ function splitString(str) {
     str = str + '*';
   }
   const array = str.split('');
-  for (let index = 0; index < array.length; index+=2) {
-    const el = array[index]+ array[index+1];
+  for (let index = 0; index < array.length; index += 2) {
+    const el = array[index] + array[index + 1];
     result.push(el);
-    
   }
 
   return result;
 }
-
 
 function splitString1(str) {
   return str.split('').reduce((acc, char, index) => {
@@ -670,18 +668,21 @@ function splitString1(str) {
 }
 
 function splitString2(str) {
-  return str.split('').map((char, index, arr) => {
-    return index % 2 === 0 ? char + (arr[index + 1] || '*') : null;
-  })
-  .filter(Boolean);
+  return str
+    .split('')
+    .map((char, index, arr) => {
+      return index % 2 === 0 ? char + (arr[index + 1] || '*') : null;
+    })
+    .filter(Boolean);
 }
 
 function splitString3(str) {
-  const result =  Array.from({ length: Math.ceil(str.length / 2) }, (_, index) => {
-    console.log('index: ', index);
-    return str.slice(index * 2, index * 2 + 2).padEnd(2, '*')
-  }
-    
+  const result = Array.from(
+    { length: Math.ceil(str.length / 2) },
+    (_, index) => {
+      console.log('index: ', index);
+      return str.slice(index * 2, index * 2 + 2).padEnd(2, '*');
+    },
   );
   return result;
 }
@@ -712,14 +713,314 @@ function splitString6(str) {
   return [str.slice(0, 2) || str[0] + '*'].concat(splitString(str.slice(2)));
 }
 
+// console.log(splitString6('123456')); // ['12', '34', '56']
+// console.log(splitString6('ab cd ef')); // ['ab', ' c', 'd ', 'ef']
+// console.log(splitString6('ABC')); // ['AB', 'C*']
+// console.log(splitString6(' ')); // [' *']
+// console.log(splitString6('')); // []
+// let g = 'a'.slice(0,2);
+// console.log(g);
+
+// function scrollingText(word) {
+//   word = word.toUpperCase();
+//   let result =[];
+//   for (let index = 0; index < word.length ; index++) {
+//     const newWord  = word.slice(index) + word.slice(0, index);
+//     result.push(newWord);
+//   }
+//   return result;
+// }
+
+// function scrollingText(input) {
+//   return [...input].map((_, index) => {
+//     const rotated = input.slice(index) + input.slice(0, index);
+//     return rotated.toUpperCase();
+//   });
+// }
+
+function scrollingText(input) {
+  return [...input].reduce((result, _, index) => {
+    const rotated = input.slice(index) + input.slice(0, index);
+    result.push(rotated.toUpperCase());
+    return result;
+  }, []);
+}
+
+function scrollingTextRecursive(input, index = 0, result = []) {
+  console.log('index: ', index);
+  if (index === input.length) {
+    return result;
+  }
+
+  const rotated = input.slice(index) + input.slice(0, index);
+  result.push(rotated.toUpperCase());
+
+  return scrollingTextRecursive(input, index + 1, result);
+}
+
+// console.log(scrollingTextRecursive('robot')); // ['ROBOT', 'OBOTR', 'BOTRO', 'OTROB', 'TROBO']
+//  console.log(scrollingText('robot')); // ['ROBOT', 'OBOTR', 'BOTRO', 'OTROB', 'TROBO']
+//  console.log(scrollingText('robot')); // ['ROBOT', 'OBOTR', 'BOTRO', 'OTROB', 'TROBO']
+
+// function isSpecialNumber(n) {
+//    let string = n.toString();
+//   //  let string = String(n);
+//   //  let string = n + '';
+//   for (let index = 0; index < string.length; index++) {
+//     if (string[index] > 5) return false;
+
+//   }
+//   return true;
+// }
+
+// function isSpecialNumber(number) {
+//   return String(number).split('').every(digit => parseInt(digit) <= 5);
+// }
+// function isSpecialNumber(number) {
+//   return !String(number).split('').reduce((acc, digit) => acc || parseInt(digit) > 5, false);
+// }
+// function isSpecialNumber(number) {
+//   return !String(number).split('').some(digit => parseInt(digit) > 5);
+// }
+// function isSpecialNumber(number) {
+//   return String(number).split('').filter(digit => parseInt(digit) > 5).length === 0;
+// }
+// function isSpecialNumber(number) {
+//   return /^[0-5]+$/.test(number);
+// }
+
+// console.log(isSpecialNumber(2)); // true
+// console.log(isSpecialNumber(9));  // false
+// console.log(isSpecialNumber(23));  // true
+// console.log(isSpecialNumber(38));   // false
+
+function isTidy(number) {
+  let numbersList = String(number).split('');
+
+  for (let index = 0; index < numbersList.length; index++) {
+    if (numbersList[index] > numbersList[index + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+// function isTidy(number) {
+//   const digits = String(number).split('').map(Number);
+
+//   return digits.every((digit, index, array) => index === 0 || digit >= array[index - 1]);
+// }
+
+// function isTidy(number) {
+//   const digits = String(number).split('').map(Number);
+
+//   const filteredDigits = digits.filter((digit, index) => index === 0 || digit >= digits[index - 1]);
+
+//   return filteredDigits.length === digits.length;
+// }
+
+// function isTidy(number) {
+//   const digits = String(number).split('').map(Number);
+
+//   return !digits.some((digit, index) => index !== 0 && digit < digits[index - 1]);
+// }
+// function isTidy(number) {
+//   const digits = String(number).split('').map(Number);
+
+//   let index = 1;
+//   while (index < digits.length) {
+//     if (digits[index] < digits[index - 1]) {
+//       return false;
+//     }
+//     index++;
+//   }
+//   return true;
+// }
+// function isTidy(number) {
+//   const digits = String(number).split('').map(Number);
+
+//   let prevDigit;
+//   for (const digit of digits) {
+//     if (digit < prevDigit) {
+//       return false;
+//     }
+//     prevDigit = digit;
+//   }
+//   return true;
+// }
+// function isTidy(number) {
+//   const digits = String(number).split('').map(Number);
+
+//   function checkTidy(index) {
+//     if (index === 0) {
+//       return true;
+//     }
+//     return digits[index] >= digits[index - 1] && checkTidy(index - 1);
+//   }
+
+//   return checkTidy(digits.length - 1);
+// }
+
+// console.log(isTidy(1024)); // false
+// console.log(isTidy(3445)); // true
+// console.log(isTidy(13579)); // true
+// console.log(isTidy(12)); // true
+// console.log(isTidy(32)); // false
+
+// function isJumping(number) {
+//   const digits = String(number).split('').map(Number);
+//   return digits.every(
+//     (digit, index, array) =>
+//       index === 0 || Math.abs(digit - array[index - 1]) === 1,
+//   );
+// }
+// function isJumping(number) {
+//   const digits = String(number).split('').map(Number);
+//   for (let i = 1; i < digits.length; i++) {
+//     if (Math.abs(digits[i] - digits[i - 1]) !== 1) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+// function isJumping(number) {
+//   const digits = String(number).split('').map(Number);
+//   return digits.reduce((acc, digit, index, array) => {
+//     return acc && (index === 0 || Math.abs(digit - array[index - 1]) === 1);
+//   }, true);
+// }
+// function isJumping(number) {
+//   const digits = String(number).split('').map(Number);
+//   return digits.every((digit, index) => {
+//     return index === 0 || Math.abs(digit - digits.slice(0, index).pop()) === 1;
+//   });
+// }
+// function isJumping(number) {
+//   const digits = String(number).split('').map(Number);
+//   const result = digits.filter((digit, index, array) => index === 0 || Math.abs(digit - array[index - 1]) === 1);
+//   return result.length === digits.length;
+// }
+// function isJumping(number) {
+//   const digits = String(number).split('').map(Number);
+//   return digits.some((digit, index, array) => index === 0 && Math.abs(digit - array[index - 1]) === 1);
+// }
+
+// console.log(isJumping(9)); // true
+// console.log(isJumping(79)); // false
+// console.log(isJumping(23454)); // true
+// console.log(isJumping(233454)); // false
+// console.log(isJumping(120954)); // false
+
+// function getLargestResult(num1, num2) {
+//   return Math.max(num1 + num2, num1 - num2, num1 * num2, num1 / num2);
+// }
+// function getLargestResult(num1, num2) {
+//   const results = [num1 + num2, num1 - num2, num1 * num2, num1 / num2];
+//   return Math.max.apply(null, results);
+// }
+
+// console.log(getLargestResult(10, -5)); // 15
+// console.log(getLargestResult(10, 5)); // 50
+// console.log(getLargestResult(0, 10)); // 10
+
+// function calculateProfit(amount, percent, period) {
+//   function calcProfit(amount, percent, period) {
+//     if (period === 0) return 0;
+//     const revenue = amount + (amount * percent) / 100;
+//     return revenue - amount + calcProfit(revenue, percent, period - 1);
+//   }
+
+//   return calcProfit(amount, percent, period).toFixed(2);
+// }
+
+// function calculateProfit(amount, percent, period) {
+//   let profit = amount;
+//   for (let i = 0; i < period; i++) {
+//     profit += (profit * percent) / 100;
+//   }
+//   return (profit - amount).toFixed(2);
+// }
+
+// function calculateProfit(amount, percent, period) {
+//   const revenue = amount * Math.pow(1 + percent / 100, period);
+//   return (revenue - amount).toFixed(2);
+// }
+// function calculateProfit(amount, percent, period) {
+//   let profit = amount;
+//   while (period > 0) {
+//     profit += (profit * percent) / 100;
+//     period--;
+//   }
+//   return (profit - amount).toFixed(2);
+// }
+
+// function calculateProfit(amount, percent, period) {
+//   return Array.from({ length: period })
+//     .reduce(acc => {
+//       const profit = (acc.amount * percent) / 100;
+//       acc.amount += profit;
+//       acc.profit += profit;
+//       return acc;
+//     }, { amount, profit: 0 })
+//     .profit.toFixed(2);
+// }
 
 
+// function calculateProfit(amount, percent, period) {
+//   const revenues = new Array(period).fill(0);
+//   return revenues
+//   .reduce(acc => {
+//     const profit = (acc.amount * percent) / 100;
+//     acc.amount += profit;
+//     acc.profit += profit;
+//     return acc;
+//   }, { amount, profit: 0 })
+//   .profit.toFixed(2);;
+// }
 
 
-console.log(splitString6('123456')); // ['12', '34', '56']
-console.log(splitString6('ab cd ef')); // ['ab', ' c', 'd ', 'ef']
-console.log(splitString6('ABC')); // ['AB', 'C*']
-console.log(splitString6(' ')); // [' *']
-console.log(splitString6('')); // []
-let g = 'a'.slice(0,2);
-console.log(g);
+// function calculateProfit(amount, percent, period) {
+//   const revenues = Array.from({ length: period }, (_, i) => i)
+//     .map((_, i) => (amount * Math.pow((1 + percent / 100), i + 1)).toFixed(2));
+
+//   return (revenues[period - 1] - amount).toFixed(2);
+// }
+
+
+// console.log(calculateProfit(10000, 4, 3)); // '1248,64'
+// console.log(calculateProfit(1000, 5, 1)); // '50,00'
+// console.log(calculateProfit(12500, 3, 12)); // '5322.01'
+
+function isSubstring(phrase, part) {
+  return phrase.indexOf(part) !== -1;
+}
+
+function isSubstring(phrase, part) {
+  return phrase.includes(part);
+}
+function isSubstring(phrase, part) {
+  return phrase.search(part) !== -1;
+}
+function isSubstring(phrase, part) {
+  return new RegExp(part).test(phrase);
+}
+function isSubstring(phrase, part) {
+  return phrase.match(new RegExp(part)) !== null;
+}
+
+function isSubstring(phrase, part) {
+  return phrase.split(part).length > 1;
+}
+function isSubstring(phrase, part) {
+  for (let i = 0; i <= phrase.length - part.length; i++) {
+    if (phrase.substring(i, i + part.length) === part) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(isSubstring('string', 's')); // true
+console.log(isSubstring('string', 'ing')); // true
+console.log(isSubstring('string', 'bring'));// false
+console.log(isSubstring('string', 'Str'));  // false
+console.log(isSubstring('string', 'string'));  // true
