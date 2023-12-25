@@ -964,7 +964,6 @@ function isTidy(number) {
 //     .profit.toFixed(2);
 // }
 
-
 // function calculateProfit(amount, percent, period) {
 //   const revenues = new Array(period).fill(0);
 //   return revenues
@@ -977,7 +976,6 @@ function isTidy(number) {
 //   .profit.toFixed(2);;
 // }
 
-
 // function calculateProfit(amount, percent, period) {
 //   const revenues = Array.from({ length: period }, (_, i) => i)
 //     .map((_, i) => (amount * Math.pow((1 + percent / 100), i + 1)).toFixed(2));
@@ -985,42 +983,299 @@ function isTidy(number) {
 //   return (revenues[period - 1] - amount).toFixed(2);
 // }
 
-
 // console.log(calculateProfit(10000, 4, 3)); // '1248,64'
 // console.log(calculateProfit(1000, 5, 1)); // '50,00'
 // console.log(calculateProfit(12500, 3, 12)); // '5322.01'
 
-function isSubstring(phrase, part) {
-  return phrase.indexOf(part) !== -1;
-}
+// function isSubstring(phrase, part) {
+//   return phrase.indexOf(part) !== -1;
+// }
 
-function isSubstring(phrase, part) {
-  return phrase.includes(part);
-}
-function isSubstring(phrase, part) {
-  return phrase.search(part) !== -1;
-}
-function isSubstring(phrase, part) {
-  return new RegExp(part).test(phrase);
-}
-function isSubstring(phrase, part) {
-  return phrase.match(new RegExp(part)) !== null;
-}
+// function isSubstring(phrase, part) {
+//   return phrase.includes(part);
+// }
+// function isSubstring(phrase, part) {
+//   return phrase.search(part) !== -1;
+// }
+// function isSubstring(phrase, part) {
+//   return new RegExp(part).test(phrase);
+// }
+// function isSubstring(phrase, part) {
+//   return phrase.match(new RegExp(part)) !== null;
+// }
 
-function isSubstring(phrase, part) {
-  return phrase.split(part).length > 1;
-}
-function isSubstring(phrase, part) {
-  for (let i = 0; i <= phrase.length - part.length; i++) {
-    if (phrase.substring(i, i + part.length) === part) {
-      return true;
+// function isSubstring(phrase, part) {
+//   return phrase.split(part).length > 1;
+// }
+// function isSubstring(phrase, part) {
+//   for (let i = 0; i <= phrase.length - part.length; i++) {
+//     if (phrase.substring(i, i + part.length) === part) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+
+// console.log(isSubstring('string', 's')); // true
+// console.log(isSubstring('string', 'ing')); // true
+// console.log(isSubstring('string', 'bring'));// false
+// console.log(isSubstring('string', 'Str'));  // false
+// console.log(isSubstring('string', 'string'));  // true
+
+// function removeVowels(string) {
+//   let result = '';
+//   const vowels = 'aeiouy';
+//   for (const char of string) {
+//     if (!vowels.includes(char.toLowerCase())) result += char;
+//   }
+//   return result;
+// }
+
+// function removeVowels(string) {
+//   return string.replace(/[aeiouy]/ig, '');
+// }
+
+// function removeVowels(string) {
+//   const vowels = 'aeiouy';
+//   return string.split('').filter(char => vowels.indexOf(char.toLowerCase()) === -1).join('');
+// }
+
+// function removeVowels(string) {
+//   const vowels = 'aeiouy';
+//   return string.split('').map(char => vowels.includes(char.toLowerCase()) ? '' : char).join('');
+// }
+
+// function removeVowels(string) {
+//   const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'y']);
+//   return string.split('').reduce((result, char) => vowels.has(char.toLowerCase()) ? result : result + char, '');
+// }
+
+// console.log(removeVowels('document')); // 'dcmnt'
+// console.log(removeVowels('I like my boss'));  // ' lk m bss'
+// console.log(removeVowels('350 euro')); // '350 r'
+
+// function makeAbbr(string) {
+//   let abbr = '';
+//   let arr = string.split(' ');
+//   for (let index = 0; index < arr.length; index++) {
+//     abbr += arr[index].slice(0, 1).toUpperCase();
+
+//   }
+//   return abbr;
+// }
+
+// function makeAbbr(string) {
+//   return string
+//     .split(' ')
+//     .map(word => word[0].toUpperCase())
+//     .join('');
+// }
+
+// function makeAbbr(string) {
+//   return string
+//     .split(' ')
+//     .reduce((abbr, word) => abbr + word[0].toUpperCase(), '');
+// }
+
+// function makeAbbr(string) {
+//   let abbr = '';
+//   string.split(' ').forEach(word => abbr += word[0].toUpperCase());
+//   return abbr;
+// }
+
+// function makeAbbr(string) {
+//   let abbr = '';
+//   for (const word of string.split(' ')) {
+//     abbr += word[0].toUpperCase();
+//   }
+//   return abbr;
+// }
+
+// function makeAbbr(string) {
+//   return string
+//     .split(' ')
+//     .map(([firstChar]) => firstChar.toUpperCase())
+//     .join('');
+// }
+
+// console.log(makeAbbr('national aeronautics space administartion'));
+// console.log(makeAbbr('central processing unit'));
+// console.log(makeAbbr('simplified molecular input line entry specification'));
+
+// function reverseString(str) {
+//   return str.split('').reverse().join('');
+// }
+
+// function reverseString(str) {
+//   let reversed = '';
+//   for (let i = str.length - 1; i >= 0; i-=1) {
+//     reversed += str[i];
+//   }
+//   return reversed;
+// }
+
+// function reverseString(str) {
+//   if (str === '') {
+//     return str;
+//   } else {
+//     return reverseString(str.substring(1)) + str[0];
+//   }
+// }
+// function reverseString(str) {
+//   return str.split('').reduce((reversed, char) => char + reversed, '');
+// }
+
+// console.log(reverseString('We like drinking beer!')); // '!reeb gniknird ekil eW'
+// console.log(reverseString('A coronavirus will be in 2020'));// '0202 ni eb lliw surivanoroc A'
+
+// function  getSuccessRate(str) {
+//   if (str === '') return 0;
+//   let count = 0;
+//   for (let char of str) {
+//     if (char === '1') {
+//       count+=1;
+//     }
+//   }
+//   return Math.round((count / str.length) * 100);
+// }
+
+// function  getSuccessRate(str) {
+//   if (str === '') return 0;
+//   const count = str.split('').filter(char => char === '1').length;
+//   return Math.round((count / str.length) * 100);
+// }
+
+// function  getSuccessRate(str) {
+//   if (str === '') return 0;
+//   const count = str.split('').reduce((acc, char) => acc + (char === '1' ? 1 : 0), 0);
+//   return Math.round((count / str.length) * 100);
+// }
+// function  getSuccessRate(str) {
+//   if (str === '') return 0;
+//   const count = (str.match(/1/g) || []).length;
+//   return Math.round((count / str.length) * 100);
+// }
+// function  getSuccessRate(str) {
+//   if (str === '') return 0;
+//   const count = str.split('1').length - 1;
+//   return Math.round((count / str.length) * 100);
+// }
+// function  getSuccessRate(str) {
+//   if (str === '') return 0;
+//   let count = 0;
+//   let index = str.indexOf('1');
+//   while (index !== -1) {
+//     count++;
+//     index = str.indexOf('1', index + 1);
+//   }
+//   return Math.round((count / str.length) * 100);
+// }
+
+// console.log(getSuccessRate('11100'));// 60
+// console.log(getSuccessRate('1100')); // 50
+// console.log(getSuccessRate('00000')); //0
+// console.log(getSuccessRate('11111')); // 100
+// console.log(getSuccessRate('')); // 0
+
+// function createArrayOfNumbers(min,max) {
+//   let array = [];
+//   for (let index = min; index <= max; index+=1) {
+//     array.push(index);
+
+//   }
+//   return array;
+// }
+
+// function createArrayOfNumbers(min, max) {
+//   let array = [];
+//   while (min <= max) {
+//     array.push(min);
+//     min += 1;
+//   }
+//   return array;
+// }
+
+// function createArrayOfNumbers(min, max) {
+//   return Array.from({ length: max - min + 1 }, (__, index) => index + min);
+// }
+// function createArrayOfNumbers(min, max) {
+//   return Array(max - min + 1 ).fill().map((_, index)=> index + min );
+// }
+
+// function createArrayOfNumbers(min, max) {
+//   return min > max ? [] : [min, ...createArrayOfNumbers(min + 1, max)];
+// }
+
+// function createArrayOfNumbers(min, max) {
+//   return Array.from({ length: max - min + 1 }).reduce((acc, _, index) => {
+//     acc.push(min + index);
+//     return acc;
+//   }, []);
+// }
+
+// console.log(createArrayOfNumbers(1,4)); // [1, 2, 3, 4]
+// console.log(createArrayOfNumbers(2, 10)); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+// console.log(createArrayOfNumbers(-5, 1)); // [-5, -4, -3, -2, -1, 0, 1]
+// console.log(createArrayOfNumbers(9, 0)); // [-5, -4, -3, -2, -1, 0, 1]
+
+//_________________________________Run once function _____________//
+// function runOnce(func) {
+//   let hasRun = false;
+//   console.log('hasRun: ', hasRun);
+
+//   return function (args) {
+//     if (!hasRun) {
+//       hasRun = true;
+//       // return func.apply(this, args);
+//       return func(args);
+//     } else {
+//       throw new Error('Error: This function can be run only once');
+//     }
+//   };
+// }
+
+// function doSomeShit(param) {
+//   console.log(`${param} is shit.`);
+// }
+
+// const doSomeShitOnce = runOnce(doSomeShit);
+
+// doSomeShitOnce(5); // 5 is shit
+// doSomeShitOnce('blah'); // Error: This function can be run only once
+
+// ______________________________________________________________________________________________________________-
+
+function showAdditions(num) {
+  let result = '';
+  let string = String(num);
+  let digitsInNumber = string.length;
+  for (let index = 0; index < digitsInNumber; index += 1) {
+    const digit = parseInt(string[index]);
+    const degree = digitsInNumber - index - 1;
+    const el = digit * Math.pow(10, degree);
+    if(digit !== 0) {
+      if(result !== '') {
+        result += '+' + el ;
+      } else {
+         result +=el;
+      }
     }
+   
   }
-  return false;
+  return result;
 }
 
-console.log(isSubstring('string', 's')); // true
-console.log(isSubstring('string', 'ing')); // true
-console.log(isSubstring('string', 'bring'));// false
-console.log(isSubstring('string', 'Str'));  // false
-console.log(isSubstring('string', 'string'));  // true
+
+
+
+
+
+console.log(showAdditions(10)); // "10");
+console.log(showAdditions(206)); // "200+6");
+console.log(showAdditions(1506)); // "1500+6");
+console.log(showAdditions(50906)); // "50000+900+6");
+console.log(showAdditions(6)); // "6");
+console.log(showAdditions(56)); // "50+6");
+console.log(showAdditions(456)); // "400+50+6");
+console.log(showAdditions(8456)); // "8000+400+50+6");
+console.log(showAdditions(28456)); // "20000+8000+400+50+6");
