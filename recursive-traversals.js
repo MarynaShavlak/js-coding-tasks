@@ -1245,34 +1245,52 @@ function isTidy(number) {
 
 // ______________________________________________________________________________________________________________-
 
-function showAdditions(num) {
-  let result = '';
-  let string = String(num);
-  let digitsInNumber = string.length;
-  for (let index = 0; index < digitsInNumber; index += 1) {
-    const digit = parseInt(string[index]);
-    const degree = digitsInNumber - index - 1;
-    const el = digit * Math.pow(10, degree);
-    if(digit !== 0) {
-      if(result !== '') {
-        result += '+' + el ;
-      } else {
-         result +=el;
-      }
-    }
+// function showAdditions(num) {
+//   let result = '';
+//   let string = String(num);
+//   let digitsInNumber = string.length;
+//   for (let index = 0; index < digitsInNumber; index += 1) {
+//     const digit = parseInt(string[index]);
+//     const degree = digitsInNumber - index - 1;
+//     const el = digit * Math.pow(10, degree);
+//     if(digit !== 0) {
+//       if(result !== '') {
+//         result += '+' + el ;
+//       } else {
+//          result +=el;
+//       }
+//     }
    
-  }
-  return result;
-}
+//   }
+//   return result;
+// }
 
+// const showAdditions = num => String(num).split('').map((digit, index, arr) => digit !== '0' ? digit * 10 ** (arr.length - index - 1) : null).filter(el => el !== null).join('+');
 
+// const showAdditions = num => String(num)
+//   .split('')
+//   .reduce((result, digit, index, arr) => {
+//     const el = digit !== '0' ? digit * 10 ** (arr.length - index - 1) : null;
+//     return el !== null ? result.concat(result.length > 0 ? '+' + el : el) : result;
+//   }, '');
+
+// const showAdditions = num => {
+//   let result = '';
+//   String(num).split('').forEach((digit, index, arr) => {
+//     const el = digit !== '0' ? digit * 10 ** (arr.length - index - 1) : null;
+//     if (el !== null) {
+//       result += result.length > 0 ? '+' + el : el;
+//     }
+//   });
+//   return result;
+// }
 
 
 
 
 console.log(showAdditions(10)); // "10");
 console.log(showAdditions(206)); // "200+6");
-console.log(showAdditions(1506)); // "1500+6");
+console.log(showAdditions(1506)); // "1000+500+6");
 console.log(showAdditions(50906)); // "50000+900+6");
 console.log(showAdditions(6)); // "6");
 console.log(showAdditions(56)); // "50+6");
