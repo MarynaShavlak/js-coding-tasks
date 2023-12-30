@@ -1260,7 +1260,7 @@ function isTidy(number) {
 //          result +=el;
 //       }
 //     }
-   
+
 //   }
 //   return result;
 // }
@@ -1285,15 +1285,96 @@ function isTidy(number) {
 //   return result;
 // }
 
+// console.log(showAdditions(10)); // "10");
+// console.log(showAdditions(206)); // "200+6");
+// console.log(showAdditions(1506)); // "1000+500+6");
+// console.log(showAdditions(50906)); // "50000+900+6");
+// console.log(showAdditions(6)); // "6");
+// console.log(showAdditions(56)); // "50+6");
+// console.log(showAdditions(456)); // "400+50+6");
+// console.log(showAdditions(8456)); // "8000+400+50+6");
+// console.log(showAdditions(28456)); // "20000+8000+400+50+6");
+
+// function flattenArray(arr) {
+
+//   function flattenHelper(input, output = []) {
+//     for (let i = 0; i < input.length; i++) {
+//       if (Array.isArray(input[i])) {
+//         flattenHelper(input[i], output);
+//       } else {
+//         output.push(input[i]);
+//       }
+//     }
+//     return output;
+//   }
+
+//   return flattenHelper(arr);
+// }
+
+// const flattenArray = (arr) => arr.reduce((output, value) => output.concat(Array.isArray(value) ? flattenArray(value) : value), []);
+
+// const nestedArray = [1, 2, [3, 4, [5, [11,13, [45,67]]]], 7, [8]];
+// const flattenedArray= flattenArray(nestedArray);
+// console.log(flattenedArray);
+
+//__________________________________________________________________//
+
+// function splitToBanknotes(sum) {
+//   let object = { };
+//   let rest = sum;
+//    const nominals = [1, 2, 5, 10, 20, 50, 100, 500];
+//   for (let index = nominals.length -1 ; index >= 0; index--) {
+//     const banknote =  nominals[index];
+//     const  quantity =  Math.floor(rest / banknote);
+//     if (quantity > 0) {
+//       rest = rest - quantity* banknote;
+//     } 
+//     object[banknote] = quantity;
+    
+//   }
+//  return object;
+// }
 
 
+// function splitToBanknotes(sum) {
+//   const nominals = [500, 100, 50, 20, 10, 5, 2, 1];
+//   let result = {};
 
-console.log(showAdditions(10)); // "10");
-console.log(showAdditions(206)); // "200+6");
-console.log(showAdditions(1506)); // "1000+500+6");
-console.log(showAdditions(50906)); // "50000+900+6");
-console.log(showAdditions(6)); // "6");
-console.log(showAdditions(56)); // "50+6");
-console.log(showAdditions(456)); // "400+50+6");
-console.log(showAdditions(8456)); // "8000+400+50+6");
-console.log(showAdditions(28456)); // "20000+8000+400+50+6");
+//   for (let nominal of nominals) {
+//     result[nominal] = Math.floor(sum / nominal);
+//     sum %= nominal;
+//     console.log('sum: ', sum);
+//   }
+
+//   return result;
+// }
+
+
+// function splitToBanknotes(sum) {
+//   const nominals = [500, 100, 50, 20, 10, 5, 2, 1];
+//   return nominals.reduce((result, nominal) => {
+//     result[nominal] = Math.floor(sum / nominal);
+//     sum %= nominal;
+//     return result;
+//   }, {});
+// }
+// function splitToBanknotes(sum) {
+//   const nominals = [500, 100, 50, 20, 10, 5, 2, 1];
+//   let result = {};
+  
+//   nominals.forEach(nominal => {
+//     const count = Math.floor(sum / nominal);
+//     if (count > 0) {
+//       result[nominal] = count;
+//       sum %= nominal;
+//     } else {
+//       result[nominal] = 0;
+//     }
+//   });
+
+//   return result;
+// }
+
+// console.log(splitToBanknotes(542)); // Object { 1: 0, 2: 1, 5: 0, 10: 0, 20: 2, 50: 0, 100: 0, 500: 1 }
+// console.log(splitToBanknotes(84)); // Object { 1: 0, 2: 2, 5: 0, 10: 1, 20: 1, 50: 1, 100: 0, 500: 0 }
+
