@@ -29,9 +29,15 @@
 //_____________________________________//
 
 // ______Task 1__________//
+// console.log('before loop', i);
 for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 0);
+  let delay = 1000 *i + 2000;
+
+  setTimeout(function(){console.log(i)} , delay);
 }
+
+
+// console.log('after loop', i);
 //_____________________________________________
 
 
