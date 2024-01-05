@@ -30,11 +30,11 @@
 
 // ______Task 1__________//
 // console.log('before loop', i);
-for (var i = 0; i < 3; i++) {
-  let delay = 1000 *i + 2000;
+// for (var i = 0; i < 3; i++) {
+//   let delay = 1000 *i + 2000;
 
-  setTimeout(function(){console.log(i)} , delay);
-}
+//   setTimeout(function(){console.log(i)} , delay);
+// }
 
 
 // console.log('after loop', i);
@@ -50,3 +50,29 @@ for (var i = 0; i < 3; i++) {
 // }
 
 // console.log(i);
+
+
+
+// solution 1 //
+// for (let i = 0; i < 3; i++){
+//   console.log('Sync code: ', i);
+
+//   setTimeout(() => console.log('Async code: ', i), 0);
+// }
+
+
+// solution 2 //
+// for (var i = 0; i < 3; i++){
+//   console.log('Sync code: ', i);
+//   setTimeout((i) => console.log('Async code: ', i), 0, i);
+// }
+
+// solution 3 
+// for (var i = 0; i < 3; i++){
+//   console.log('Sync code: ', i);
+//   ((i) => {
+//     setTimeout(() => console.log('Async code: ', i), 0);
+//   })(i)
+// }
+
+
