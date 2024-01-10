@@ -356,24 +356,191 @@
 //   console.log(result)
 // })
 
-function doSomething() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('12');
-    }, 2000);
-  });
-}
+// function doSomething() {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve('12');
+//     }, 2000);
+//   });
+// }
 
-function doSomethingElse(value) {
-  console.log(value);
- return 'from doSomething else';
-}
+// function doSomethingElse(value) {
+//   console.log(value);
+//  return 'from doSomething else';
+// }
 
-// doSomething().then(function () {
-//   return doSomethingElse();
-// })
+// // doSomething().then(function () {
+// //   return doSomethingElse();
+// // })
+// // .then(data => console.log('data', data))
+
+// doSomething().then(doSomethingElse)
 // .then(data => console.log('data', data))
 
+// ___Tadk 11_____
+// console.log(1);
 
-doSomething().then(doSomethingElse)
-.then(data => console.log('data', data))
+// setTimeout(() => console.log(2));
+
+// Promise.resolve().then(() => console.log(3));
+
+// Promise.resolve().then(() => setTimeout(() => console.log(4)));
+
+// Promise.resolve().then(() => console.log(5));
+
+// setTimeout(() => console.log(6));
+
+// console.log(7);
+
+// // ___Tadk 12_____
+// console.log(1); // cинхрон 1
+
+// setTimeout(() => console.log(2)); // макро 1
+
+// Promise.reject(3).catch(console.log); // мікро 1    - але тут відхилено
+
+// new Promise(resolve => setTimeout(resolve)).then(() => console.log(4));  // макро 2    - проміс через 0 мілісекунд має зарезолвитись спочатку
+
+// Promise.resolve(5).then(console.log);  // мікро 2 - але тут успішний
+
+// console.log(6);  // cинхрон 2
+
+// setTimeout(() => console.log(7),0); // макро 3
+
+// // ___Tadk 12_____
+// console.log(1);
+
+// setTimeout(() => console.log(2));
+
+// Promise.reject(3).catch(console.log);
+
+// new Promise(resolve => setTimeout(resolve)).then(() => console.log(4));
+
+// Promise.resolve(5).then(console.log);
+
+// console.log(6);
+
+// setTimeout(() => console.log(7),0);
+
+// ___Tadk 12_____
+
+// Promise.reject(3).then(console.log).catch(console.log);
+// Promise.resolve(5).then(console.log);
+
+// task 13
+
+// const myPromise = (delay) => new Promise((res, rej) => { setTimeout(res, delay) })
+
+// setTimeout(() => console.log('in setTimeout1'), 1000);  //1
+
+// myPromise(1000).then(res => console.log('in Promise 1'));  //2
+
+// setTimeout(() => console.log('in setTimeout2'), 100);  //3
+
+// myPromise(2000).then(res => console.log('in Promise 2')); // 4
+
+// setTimeout(() => console.log('in setTimeout3'), 2000);  // 5
+
+// myPromise(1000).then(res => console.log('in Promise 3'));  // 6
+
+// setTimeout(() => console.log('in setTimeout4'), 1000); //7
+
+// myPromise(5000).then(res => console.log('in Promise '));// 8
+
+// task 4
+
+// console.log('start');
+
+// const promise1 = new Promise((resolve, reject) => {
+//   console.log(1)
+//   resolve(2)
+//   console.log(3)
+// })
+
+// promise1.then(res => {
+//   console.log(res)
+// })
+
+// console.log('end');
+
+// task 5
+
+// console.log('start');
+
+// const promise1 = new Promise((resolve, reject) => {
+//   console.log(1)
+// })
+
+// promise1.then(res => {
+//   console.log(2)
+// })
+
+// console.log('end');
+
+// task 6
+// console.log('start')
+
+// const fn = () => (new Promise((resolve, reject) => {
+//   console.log(1);
+//   resolve('success')
+// }))
+
+// console.log('middle')
+
+// fn().then(res => {
+//   console.log(res)
+// })
+
+// console.log('end')
+
+// task 7
+// const promise = new Promise((resolve, reject) => {
+//   console.log(1);
+//   setTimeout(() => {
+//     console.log('timerStart');
+//     resolve('success');
+//     console.log('timerEnd');
+//   }, 0);
+//   console.log(2);
+// });
+
+// promise.then(res => {
+//   console.log(res);
+// });
+
+// console.log(4);
+
+
+// task 8
+// const timer1 = setTimeout(() => {
+//   console.log('timer1');
+  
+//   const promise1 = Promise.resolve().then(() => {
+//     console.log('promise1')
+//   })
+// }, 0)
+
+// const timer2 = setTimeout(() => {
+//   console.log('timer2')
+// }, 0)
+
+
+// task 9
+
+console.log('start');
+
+const promise1 = Promise.resolve().then(() => {
+  console.log('promise1'); // micro
+  const timer2 = setTimeout(() => {
+    console.log('timer2')  // macro 2 
+  }, 0)
+});
+
+const timer1 = setTimeout(() => {  // macro 1
+  console.log('timer1')
+  const promise2 = Promise.resolve().then(() => {
+    console.log('promise2')
+  })
+}, 0)
+
+console.log('end');
