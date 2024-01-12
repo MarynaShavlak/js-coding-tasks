@@ -510,11 +510,10 @@
 
 // console.log(4);
 
-
 // task 8
 // const timer1 = setTimeout(() => {
 //   console.log('timer1');
-  
+
 //   const promise1 = Promise.resolve().then(() => {
 //     console.log('promise1')
 //   })
@@ -524,23 +523,391 @@
 //   console.log('timer2')
 // }, 0)
 
-
 // task 9
 
-console.log('start');
+// console.log('start');
 
-const promise1 = Promise.resolve().then(() => {
-  console.log('promise1'); // micro
-  const timer2 = setTimeout(() => {
-    console.log('timer2')  // macro 2 
-  }, 0)
-});
+// const promise1 = Promise.resolve().then(() => {
+//   console.log('promise1'); // micro
+//   const timer2 = setTimeout(() => {
+//     console.log('timer2')  // macro 2
+//   }, 0)
+// });
 
-const timer1 = setTimeout(() => {  // macro 1
-  console.log('timer1')
-  const promise2 = Promise.resolve().then(() => {
-    console.log('promise2')
-  })
-}, 0)
+// const timer1 = setTimeout(() => {  // macro 1
+//   console.log('timer1')
+//   const promise2 = Promise.resolve().then(() => {
+//     console.log('promise2')
+//   })
+// }, 0)
 
-console.log('end');
+// console.log('end');
+
+// task 10
+// const p = new Promise((resolve, reject) => {
+//   reject(Error('Всё сломалось :('));
+// })
+//   .catch((error) => console.log('1-я', error.message))
+//   .catch((error) => console.log('2-я', error.message));
+
+//   const p2 = new Promise((resolve, reject) => {
+//     reject(Error('Всё сломалось :('));
+//   });
+
+//   p2.catch((error) => console.log('3-я', error.message));
+//   p2.catch((error) => console.log('4-я', error.message));
+
+// task 11
+// setTimeout(() => {
+//   console.log('timeout')
+// }, 0);
+
+// const p = new Promise((resolve, reject) => {
+//   console.log('Promise creation');
+//   resolve();
+// })
+
+// const p2 = new Promise((resolve, reject) => {
+//   console.log(123)
+// })
+
+// p.then(() => {
+//   console.log('Promise resolving');
+// })
+
+// console.log('End')
+
+// console.log('p2 =>>', p2)
+
+//  task 12
+// let a;
+
+// let p4 = new Promise(function (resolve) {
+//   console.log('TEST A1', a);
+//   a = 25;
+//   setTimeout(() => {
+//     console.log('TEST A2', a);
+//     resolve(a);
+//   }, 100);
+// });
+
+// setTimeout(function timeout() {
+//   a = 10;
+//   console.log('TEST A3', a);
+// }, 100);
+
+// p4.then(function (b) {
+//   console.log('TEST A4', a);
+// });
+
+// console.log('TEST A5', a);
+
+// task 13
+
+// setTimeout(() => {
+//   console.log('timeout1');
+// });
+
+// new Promise((resolve)=>{
+//   console.log('promise');
+//   setTimeout(() => {
+//     console.log('timeout2 -1');
+//     resolve();
+//     console.log('timeout2 -2 ');
+//   });
+// }).then(()=> {
+//   console.log('callback in then1');
+// }).then(()=> {
+//   console.log('callback in then2');
+// })
+
+// console.log('log');
+
+// setTimeout(() => {
+//   console.log('timeout3');
+// });
+
+// task 14
+
+// function resolveAfter2Seconds(x) {
+//   console.log(`Какой Х пришёл -> ${x}`);
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve(x); //
+//     }, 5000);
+//   });
+// }
+// async function add1(x) {
+//   console.log('add1 Hello');
+//   const a = await resolveAfter2Seconds(20);
+//   console.log('a: ', a);
+//   const b = await resolveAfter2Seconds(30);
+//   console.log('b: ', b);
+//   console.log('add1 Bye');
+//   return x + a + b;
+// }
+// add1(10).then(console.log);
+
+// function resolveAfter2Seconds(x) {
+//   console.log(`Какой Х пришёл -> ${x}`);
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve(x); //
+//     }, 5000);
+//   });
+// }
+// async function add1(x) {
+//   console.log('add1 Hello');
+//   const a = await resolveAfter2Seconds(20);
+//   console.log('a: ', a);
+//   // const b = await resolveAfter2Seconds(30);
+//   // console.log('b: ', b);
+//   console.log('add1 Bye');
+//   // return x + a + b;
+//   // return x + a;
+// }
+// add1(10).then(result => console.log(`result `, result));
+
+// // async function add2(x) {
+// //   console.log('add2 Hello');
+// //   const p_a = resolveAfter2Seconds(200);
+// //   const p_b = resolveAfter2Seconds(300);
+// //   const p_c = resolveAfter2Seconds(100);
+// //   const p_d = resolveAfter2Seconds(999);
+// //   console.log('add2 Bye');
+// //   return x + (await p_a) + (await p_b) + (await p_c) + (await p_d);
+// // }
+// // add2(400).then(console.log);
+
+
+// const obj = new URLSearchParams({
+//   a: 5,
+//   b: 7,
+// })
+
+// console.log(obj.toString());
+
+
+/// Tak 13
+
+// async function wait() {
+//   await new Promise(resolve => setTimeout(() => {
+//     resolve();
+//   }, 1000))
+//   return 10;
+// }
+
+
+// function simpleFunction() {
+//   wait().then(console.log)
+// }
+
+// simpleFunction();
+
+
+
+/// task 14
+
+// console.log(new Date(-1));
+
+
+// task 15
+
+
+
+// const promise1 = Promise.resolve('First');
+// const promise2 = Promise.resolve('Second');
+// const promise3 = Promise.reject('Third');
+// const promise4 = Promise.resolve('Fourth');
+
+
+// const runPromises = async () => {
+//   const res1 = await Promise.all([promise1, promise2]);
+//   const res2 = await Promise.all([promise3, promise4]);
+//   return [res1, res2]
+
+// }
+// ;
+
+
+// runPromises()
+// .then(res => console.log(res))
+// .catch(err => console.log(err))
+
+
+
+/// task 16
+// const promise1 = Promise.resolve('First');
+// const promise2 = Promise.resolve('Second');
+// const promise3 = Promise.resolve('Third');
+// const promise4 = Promise.resolve('Fourth');
+
+
+// const runPromises = async () => {
+//   const res1 = await Promise.all([promise1, promise2]);
+//   const res2 = await Promise.all([promise3, promise4]);
+//   return [res1, res2]
+// }
+// ;
+
+
+// runPromises()
+// .then(res => console.log(res))
+// .catch(err => console.log(err))
+
+
+
+// task 17
+// const promise = new Promise((resolve, reject)=> {
+//   resolve('1');
+// });
+
+// promise
+// .then(console.log)
+// .then(data => {
+//   console.log('data', data);
+//   if(!data) {
+//   throw new Error('Error in second then')
+ 
+//   }
+//   return '2';
+// })
+// .then(data => console.log('data in third then', data))
+// .catch(console.log)
+
+
+
+
+// const result  =  [1,2,3, 4, 5] + '';
+// const result  =  "12345" + undefined;
+// const result  =  +"12345" + undefined;
+// const result  =  "12345" + undefined;
+// console.log(Number(undefined));
+// console.log(Number(null));
+// console.log(+"12345" + null);
+
+// console.log(String(123));
+// console.log(String(-12.3));
+// console.log(String(null));
+// console.log(String(undefined));
+// console.log(String(true));
+// console.log(String(false));
+// console.log(typeof String({a: 5}));
+
+
+// console.log(Boolean(new Date()));
+// console.log(Boolean(Symbol()));
+// console.log(Boolean(function(){}));
+
+// console.log( Number('123') );
+// console.log(+'123');
+// console.log( 123 != '456' );
+// console.log( 4 > '5' );
+// console.log( 5/null );
+// console.log( true | 0);
+
+// console.log(Number(''));
+
+// console.log(null == 0);
+// console.log(null == null);
+// console.log(undefined == undefined);
+// console.log(null == undefined);
+// let a = 2;
+// let b = a;
+// console.log(a == b);
+
+// console.log([1] + [2, 3]);
+// let d = new Date();
+
+// let str = d.toString();
+// let num = d.valueOf();
+ 
+// console.log(d == str); 
+// console.log(d == num);
+// console.log(d + d);
+// console.log(d - d);
+
+// console.log(Number([]));
+// console.log(Number({}));
+// console.log(Number(function() {}));
+// console.log(Number([12]));
+// console.log( Number([" "]));
+// console.log( Number([1, 2, 3]));
+// console.log(15 + 3 + "number");
+// console.log([] + null + 1);
+// console.log(0 || "0" && {}  );
+// const a = {}+[]+{}+[1];
+// const a = new Date(0) + 0;
+// console.log(a);
+// console.log(null >= 0);
+// console.log(typeof []);
+// console.log(null || {} || true);
+// console.log(null || [] || true);
+// console.log(1 && 0 && true);
+
+// const b = 1 && 'here' &&  getValue();
+// console.log('b: ', b);
+// var getValue = ()=> 'New';
+
+// const do1 =()=> 'doing code';
+// const do2 = () => 'breaking code';
+
+// const result = (1 > 0) && do1() && do2;
+// // console.log('result: ', result);
+
+// function makeCounter() {
+//   var currentCount = 1;
+//   return function () {
+//     return currentCount++ ;
+//   }
+// }
+
+// var counter = makeCounter();
+// counter();
+// counter();
+// var counter = makeCounter();
+
+// var lastRes = counter();
+// console.log('lastRes : ', lastRes );
+
+
+
+// "use strict";
+// function f1() {
+//    return this;
+// }
+//  const b = f1();
+//  console.log('b: ', b);
+
+
+// const o ={
+//   prop:37,
+//   func : function() {
+//     return this;
+//   }
+// }
+
+// const b ={
+//  b:2,
+//   func : o.func
+// }
+
+// console.log(b.func());
+
+
+
+
+// const o ={
+//   prop:37,
+//   func : () => {
+//     return this;
+//   }
+// }
+
+// const b ={
+//  b:2,
+//   func : o.func
+// }
+
+// console.log(b.func());
+
